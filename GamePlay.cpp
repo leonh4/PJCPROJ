@@ -114,7 +114,7 @@ auto GamePlay::check(sf::RenderWindow &window, GamePlayInfo &gamePlayInfo, std::
             gamePlayInfo.colorChange.restart();    // do chwilowej zmiany tekstu na czerwono na górze
             gamePlayInfo.inGameStats.setFillColor(sf::Color::Red);  // _''_
         } else if (strEntered == textItr->getString()) {    // słowo zostało skasowane
-            if (gamePlayInfo.killed % 10 == 0) currentSpeed += 0.005f;
+            if (gamePlayInfo.killed % 10 == 0) currentSpeed += 0.01f;
             textItr = texts.erase(textItr);
             gamePlayInfo.killed++;
             strEntered.clear();

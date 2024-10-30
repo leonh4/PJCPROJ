@@ -5,8 +5,14 @@ PostGameScreen::PostGameScreen(sf::Font const &font1, sf::RenderWindow const &wi
     stats.setFont(font);
     auto secsPlayed = static_cast<int>(timePlayed) % 60;
     auto minsPlayed = static_cast<int>(timePlayed) / 60;
+    auto secsPlayed2 = std::to_string(secsPlayed);
+    if (secsPlayed < 10) {
+        std::ranges::reverse(secsPlayed2);
+        secsPlayed2 += "0";
+        std::ranges::reverse(secsPlayed2);
+    }
     stats.setString(
-            "KILLED: " + std::to_string(killed) + "\nMINUTES PLAYED: " + std::to_string(minsPlayed) + "," + std::to_string(secsPlayed) +
+            "KILLED: " + std::to_string(killed) + "\nMINUTES PLAYED: " + std::to_string(minsPlayed) + ":" + secsPlayed2 +
             "\nWPM: " + std::to_string(killed / (timePlayed/60))
             );
 

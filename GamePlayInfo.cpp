@@ -12,9 +12,16 @@ auto GamePlayInfo::updateStats() -> void {
     auto secsElapsed = static_cast<int>(timeFromStart.getElapsedTime().asSeconds());
     auto secs = secsElapsed % 60;
     auto mins = secsElapsed / 60;
+    auto secs2 = std::to_string(secs);
+    if (secs < 10) {
+        std::ranges::reverse(secs2);
+        secs2 += "0";
+        std::ranges::reverse(secs2);
+    }
+
     inGameStats.setString("Difficulty: " + difficulty +"\tLIVES: " + std::to_string(lives) +
     "\tKILLED: " + std::to_string(killed) +
-    "\tTIME ELAPSED: " + std::to_string(mins) + "," + std::to_string(secs)
+    "\tTIME ELAPSED: " + std::to_string(mins) + ":" + secs2
     );
 }
 

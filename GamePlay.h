@@ -10,9 +10,9 @@ public:
 
     float currentSpeed;
     float originalSpeed;    // potrzebne do resetu (prędkość zmienia się podczas gry)
-    float easySpeed = 0.04f;
-    float mediumSpeed = 0.06f;
-    float hardSpeed = 0.08f;
+    float easySpeed = 0.1f;
+    float mediumSpeed = 0.12f;
+    float hardSpeed = 0.14f;
     int textSize;
 
     sf::Text textEntered;
