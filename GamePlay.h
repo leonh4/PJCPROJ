@@ -45,7 +45,7 @@ public:
 
     auto addWordToTexts(GamePlayInfo const& gamePlayInfo, std::vector<std::string> const& randomStrs) -> void;
 
-    auto moveTexts() -> void;
+    auto moveTexts(float deltaTime) -> void;
 
     auto changeTextColors(sf::Window const& window) -> void;
 

@@ -66,11 +66,16 @@ int main() {
 
     auto backgrd = Space(); // gwiazdy w tle
 
+    sf::Clock deltaClock;
+
     while (backgrd.stars.size() < backgrd.maxStars) {
         backgrd.createStar(randOne(window.getSize().x), randOne(window.getSize().y), static_cast<float>(randOne(10))/7);
     }
 
     while (window.isOpen()) {
+        float deltaTime = deltaClock.restart().asMilliseconds();
+
+
         if (!mainMenu.gameStarted && !settings.inSettings) {    // przyciski w main menu
             mainMenu.handleMainMenuEvents(window, settings.inSettings, gamePlayInfo, gamePlay);
         } else if (!mainMenu.gameStarted && settings.inSettings) {      // przyciski w ustawieniach
@@ -111,8 +116,7 @@ int main() {
             }
         }
         window.clear();
-
-        backgrd.drawStars(window);
+        backgrd.drawStars(window, deltaTime);
         if (mainMenu.gameStarted) {
             if (gamePlayInfo.lives > 0) {
                 if (gamePlay.spawnClock.getElapsedTime().asSeconds() >= 1.f) {  // co sekunde nowe słowo
@@ -120,7 +124,7 @@ int main() {
                     gamePlay.spawnClock.restart();
                 }
 
-                gamePlay.moveTexts();
+                gamePlay.moveTexts(deltaTime);
                 gamePlay.drawTexts(window);
                 gamePlay.changeTextColors(window);
 
@@ -138,7 +142,7 @@ int main() {
             } else {
                 window.clear();
 
-                backgrd.drawStars(window);
+                backgrd.drawStars(window, deltaTime);
                 auto postGameScreen = PostGameScreen(defaultFont, window, gamePlayInfo.killed, gamePlayInfo.finalTime);
                 postGameScreen.handlePostGameEvents(window,mainMenu, gamePlayInfo, gamePlay, gen);  // powrót do main menu po grze
                 postGameScreen.drawPostGameScreen(window);

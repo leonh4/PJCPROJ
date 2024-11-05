@@ -13,7 +13,7 @@ public:
 
     Space();
 
-    auto drawStars(sf::RenderWindow & window) -> void;
+    auto drawStars(sf::RenderWindow & window, float deltaTime) -> void;
 };
 
 

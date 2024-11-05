@@ -8,12 +8,12 @@ auto Space::createStar(int const& x, int const& y, float const& r) -> void  {
 
 Space::Space() {}
 
-auto Space::drawStars(sf::RenderWindow &window) -> void {
+auto Space::drawStars(sf::RenderWindow &window, float deltaTime) -> void {
         for (sf::CircleShape &s: stars) {
             if (s.getPosition().x >= window.getSize().x) {
                 s.setPosition(0.f, static_cast<float>(s.getPosition().y));
             }
-            s.move(starSpeed, 0);
+            s.move(starSpeed * deltaTime, 0);
             window.draw(s);
         }
 }

@@ -60,9 +60,9 @@ void GamePlay::setTextSize(int const & textSize1) {
     textSize = textSize1;
 }
 
-auto GamePlay::moveTexts() -> void {
+auto GamePlay::moveTexts(float deltaTime) -> void {
     for (auto &text: texts) {
-        text.move(currentSpeed, 0);
+        text.move(currentSpeed * deltaTime, 0);
     }
 }
 
